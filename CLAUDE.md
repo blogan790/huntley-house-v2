@@ -176,9 +176,57 @@ Proposals files: `C:\Users\Brett Logan\Downloads\Website Developers Proposals\`
 ## Build Status
 - [x] Puzzle artwork TIFFs → JPG converted
 - [x] Box PDF designs → JPG converted
+- [x] Box images cropped to front face (1534x1794) and converted CMYK → sRGB
 - [x] Brand guidelines parsed and documented
-- [ ] Copy brand fonts into project `/assets/fonts/`
-- [ ] Copy logo SVGs into project `/assets/logos/`
-- [ ] Build prototype homepage
-- [ ] Build product page
-- [ ] Build cart/checkout flow
+- [x] Brand fonts copied to `/assets/fonts/`
+- [x] Logo SVGs copied to `/assets/logos/` (including H mark cream + cocoa)
+- [x] Homepage built (`index.html`) — see sections below
+- [x] The Edit blog page (`the-edit.html`)
+- [x] Git repo initialized with full history
+- [x] Hosted on Netlify: https://fastidious-dango-897244.netlify.app
+- [ ] Product detail page (product.html)
+- [ ] Cart/checkout flow
+- [ ] Lifestyle photography (placeholder puzzle art in hero/ritual for now)
+
+## Homepage Sections (in order)
+1. **Nav** — Deep Cocoa bg, H mark + "Huntley House" (Stylebender) horizontal logo, cream links left, search/cart/hamburger right. Mobile: hamburger left, logo center, cart right.
+2. **Hero** — Current: Rainy Ramen full-bleed, dark overlay, centered cream text. Copy: "Now Available / Less Scrolling. More Puzzling. / Brain cardio. No gym required." + "Shop the Collection" cocoa CTA. Lifestyle photo placeholder — replace when shoot assets arrive.
+3. **Value Props** — Orange strip, 3 columns: "Born in the City of Angels / The Softest Touch / Elevated Artwork"
+4. **Marquee** — Auto-scrolling strip of all 8 puzzle artworks, fixed 480px height natural width. Header: "One piece, one pause, one 'aha' at a time."
+5. **Collection Grid** — 4-col (3 on tablet, 2 on mobile). Box top as primary, puzzle artwork reveals on hover. Aspect ratio 1534:1794 (matches exact box dimensions, no letterboxing).
+6. **The Puzzle Ritual** — Split: Fabled Forest image left, cream-warm panel right. "Think of it as brain cardio — no gym required."
+7. **Brand Story** — Centered italic paragraph
+8. **The Edit** — 3 blog cards linking to the-edit.html. "View All →" links to the-edit.html.
+9. **FAQ** — 4 questions, JS accordion, blue→cream gradient bg
+10. **Newsletter** — H mark cocoa, cream-warm bg, email form
+11. **Footer** — Vintage Blue bg, 4-col links, contact info
+
+## Design Decisions Made
+- Nav background: Deep Cocoa (not Vintage Blue — too light for logo contrast)
+- Logo: H mark SVG + "Huntley House" text in Stylebender (not italic Kepler)
+- Box images: use as PRIMARY card image (all portrait 1534x1794); puzzle art reveals on hover. Solved the mixed portrait/landscape problem.
+- Marquee: fixed height, natural width — editorial film strip, no cropping
+- Hero: full-bleed image with overlay. Placeholder is Rainy Ramen. Will swap for lifestyle photo from shoot.
+- Ritual section image: Fabled Forest (Rainy Ramen moved to hero)
+- The Edit: lives at the-edit.html, homepage shows 3 featured articles with link
+
+## Logo Files in Project
+| File | Use |
+|------|-----|
+| `assets/logos/HH_logo_H_cream.svg` | Nav (on cocoa bg) |
+| `assets/logos/HH_logo_H_cocoa.svg` | Newsletter mark (on cream-warm bg) |
+| All other SVGs | Available but not currently used in main pages |
+
+## Key Design Iterations (Netlify URLs)
+| Version | URL |
+|---------|-----|
+| Color hero (Vintage Blue) | https://69bf6cc78510b68623dc43cc--fastidious-dango-897244.netlify.app |
+| Cocoa nav + The Edit page | https://69bf6c0ad4ca42778f4ae414--fastidious-dango-897244.netlify.app |
+| Rainy Ramen hero (current) | https://fastidious-dango-897244.netlify.app |
+| All deploys | https://app.netlify.com/projects/fastidious-dango-897244/deploys |
+
+## Next Session Priorities
+1. Hero image decision — keep Rainy Ramen or try Fabled Forest? Or hold for lifestyle photos?
+2. Build product detail page (product.html)
+3. Mobile polish pass — test on real device
+4. Review and refine copy throughout
