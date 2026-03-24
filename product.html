@@ -245,7 +245,7 @@
     .product__rule {
       height: 1px;
       background: rgba(47,27,27,0.12);
-      margin: 28px 0;
+      margin: 36px 0 28px;
     }
 
     .product__desc {
@@ -260,7 +260,7 @@
     .product__specs {
       display: flex;
       gap: 0;
-      margin-bottom: 36px;
+      margin-bottom: 0;
       border: 1px solid rgba(47,27,27,0.12);
     }
     .product__spec {
@@ -545,11 +545,11 @@
           <span class="product__price">$34.95</span>
           <span class="product__sale-tag">Launch Sale</span>
         </div>
+        <button class="product__add-btn" id="addToCartBtn" onclick="handleAddToCart()">Add to Cart</button>
+        <a href="index.html#collection" class="product__back">← Continue Shopping</a>
         <div class="product__rule"></div>
         <p class="product__desc" id="product-desc">—</p>
         <div class="product__specs" id="product-specs"></div>
-        <button class="product__add-btn" id="addToCartBtn" onclick="handleAddToCart()">Add to Cart</button>
-        <a href="index.html#collection" class="product__back">← Continue Shopping</a>
       </div>
 
     </div>
