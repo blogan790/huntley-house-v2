@@ -48,77 +48,135 @@
       top: 0; left: 0; right: 0;
       z-index: 100;
       display: grid;
-      grid-template-columns: 1fr auto 1fr;
+      grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
       align-items: center;
-      padding: 0 40px;
-      height: 72px;
+      padding: 12px 40px;
       background: var(--cocoa);
+      border-bottom: 1px solid rgba(239,230,216,0.08);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
     }
-    .nav__left { display: flex; gap: 32px; align-items: center; }
-    .nav__left a {
+    .nav.hidden { transform: translateY(-100%); }
+
+    .nav__main { display: flex; gap: 32px; align-items: center; }
+    .nav__main a {
       font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 700;
       color: var(--cream);
-      opacity: 0.65;
+      opacity: 0.5;
       transition: opacity 0.2s;
+      letter-spacing: 0.01em;
     }
-    .nav__left a:hover { opacity: 1; }
-    .nav__logo {
-      justify-self: center;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .nav__logo-mark { height: 45px; width: auto; }
-    .nav__logo-type { height: 42px; width: auto; }
+    .nav__main a:hover { opacity: 1; }
+
+    .nav__logo { justify-self: center; }
+    .nav__logo img { width: 145px; height: auto; display: block; }
+
     .nav__right {
       display: flex;
-      gap: 20px;
+      gap: 4px;
       align-items: center;
       justify-content: flex-end;
     }
     .nav__icon-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
       background: none;
       border: none;
       color: var(--cream);
-      opacity: 0.65;
-      display: flex;
-      align-items: center;
+      opacity: 0.5;
       transition: opacity 0.2s;
-      padding: 4px;
-    }
-    .nav__icon-btn:hover { opacity: 1; }
-    .nav__hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      padding: 4px;
+      position: relative;
       cursor: pointer;
     }
-    .nav__hamburger span { display: block; width: 22px; height: 1.5px; background: var(--cream); transition: transform 0.25s, opacity 0.25s; }
-    .nav__hamburger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .nav__hamburger.is-open span:nth-child(2) { opacity: 0; }
-    .nav__hamburger.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-    /* Mobile drawer */
-    .nav__drawer {
+    .nav__icon-btn:hover { opacity: 1; }
+    .nav__icon-btn { position: relative; }
+    .cart-badge {
+      position: absolute;
+      top: 4px; right: 4px;
+      width: 14px; height: 14px;
+      background: var(--cream);
+      color: var(--cocoa);
+      border-radius: 50%;
+      font-size: 8px;
       display: none;
-      position: fixed;
-      inset: 0;
-      background: var(--cocoa);
-      z-index: 99;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 36px;
-      padding-top: 72px;
+      line-height: 1;
     }
-    .nav__drawer.is-open { display: flex; }
-    .nav__drawer a { font-family: var(--font-title); font-size: 32px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream); }
+    .cart-badge.visible { display: flex; }
+
+    .nav__hamburger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      color: var(--cream);
+      opacity: 0.7;
+      cursor: pointer;
+    }
+
+    /* Mobile drawer — slides from left */
+    .nav__drawer {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      pointer-events: none;
+    }
+    .nav__drawer.is-open { pointer-events: all; }
+    .nav__drawer-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(47,27,27,0.5);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+    .nav__drawer.is-open .nav__drawer-overlay { opacity: 1; }
+    .nav__drawer-panel {
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: min(320px, 85vw);
+      background: var(--cocoa);
+      border-right: 1px solid rgba(239,230,216,0.08);
+      display: flex;
+      flex-direction: column;
+      padding: 64px 40px 48px;
+      transform: translateX(-100%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .nav__drawer.is-open .nav__drawer-panel { transform: translateX(0); }
+    .nav__drawer-links { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .nav__drawer-links a {
+      font-family: var(--font-title);
+      font-size: clamp(28px, 7vw, 36px);
+      letter-spacing: -0.015em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.6;
+      line-height: 1.15;
+      transition: opacity 0.2s;
+    }
+    .nav__drawer-links a:hover { opacity: 1; }
+    .nav__drawer-footer {
+      border-top: 1px solid rgba(239,230,216,0.1);
+      padding-top: 24px;
+    }
+    .nav__drawer-footer a {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--cream);
+      opacity: 0.4;
+      transition: opacity 0.2s;
+    }
+    .nav__drawer-footer a:hover { opacity: 1; }
 
     /* ─── Hero ───────────────────────────────────────────────── */
     .hero {
@@ -167,7 +225,7 @@
       font-family: var(--font-title);
       font-size: clamp(52px, 7vw, 100px);
       line-height: 0.92;
-      letter-spacing: 0.02em;
+      letter-spacing: -0.015em;
       text-transform: uppercase;
       color: var(--cream);
       margin-bottom: 28px;
@@ -281,7 +339,7 @@
     .collection { background: var(--cream); padding: 0 40px 100px; }
     .section-header { text-align: center; padding: 72px 48px 48px; }
     .section-header__label { font-family: var(--font-body); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); margin-bottom: 12px; }
-    .section-header__title { font-family: var(--font-title); font-size: clamp(36px, 4.5vw, 64px); line-height: 0.95; letter-spacing: 0.02em; text-transform: uppercase; color: var(--cocoa); }
+    .section-header__title { font-family: var(--font-title); font-size: clamp(36px, 4.5vw, 64px); line-height: 0.95; letter-spacing: -0.015em; text-transform: uppercase; color: var(--cocoa); }
     .collection__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1400px; margin: 0 auto; }
     .card { display: flex; flex-direction: column; cursor: pointer; text-decoration: none; color: inherit; }
     .card__image-wrap { position: relative; overflow: hidden; background: var(--cream-warm); margin-bottom: 14px; aspect-ratio: 1534 / 1794; }
@@ -290,7 +348,7 @@
     .card__box-img { position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s ease; }
     .card:hover .card__box-img { opacity: 1; }
     .card:hover .card__puzzle-img { opacity: 0; }
-    .card__name { font-family: var(--font-title); font-size: 17px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cocoa); line-height: 1; margin-bottom: 5px; }
+    .card__name { font-family: var(--font-title); font-size: 17px; letter-spacing: -0.015em; text-transform: uppercase; color: var(--cocoa); line-height: 1; margin-bottom: 5px; }
     .card__meta { font-family: var(--font-body); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); }
     .card__footer { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
     .card__pricing { display: flex; align-items: baseline; gap: 8px; }
@@ -339,7 +397,7 @@
     /* ─── The Edit ───────────────────────────────────────────── */
     .edit { background: var(--cream); padding: 0 40px 100px; }
     .edit__header { display: flex; justify-content: space-between; align-items: baseline; padding: 72px 0 40px; }
-    .edit__title { font-family: var(--font-title); font-size: clamp(28px, 3.5vw, 48px); letter-spacing: 0.04em; text-transform: uppercase; color: var(--cocoa); }
+    .edit__title { font-family: var(--font-title); font-size: clamp(28px, 3.5vw, 48px); letter-spacing: -0.015em; text-transform: uppercase; color: var(--cocoa); }
     .edit__link { font-family: var(--font-body); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cocoa); opacity: 0.5; display: flex; align-items: center; gap: 6px; transition: opacity 0.2s; }
     .edit__link:hover { opacity: 1; }
     .edit__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
@@ -398,7 +456,7 @@
     /* ─── Newsletter ─────────────────────────────────────────── */
     .newsletter { background: var(--cream-warm); padding: 80px 48px; text-align: center; }
     .newsletter__mark { height: 48px; width: auto; margin: 0 auto 28px; opacity: 0.5; }
-    .newsletter__title { font-family: var(--font-title); font-size: clamp(24px, 3.5vw, 44px); text-transform: uppercase; letter-spacing: 0.06em; color: var(--cocoa); margin-bottom: 14px; line-height: 1; }
+    .newsletter__title { font-family: var(--font-title); font-size: clamp(24px, 3.5vw, 44px); text-transform: uppercase; letter-spacing: -0.015em; color: var(--cocoa); margin-bottom: 14px; line-height: 1; }
     .newsletter__sub { font-family: var(--font-body); font-size: 14px; color: var(--cocoa); opacity: 0.65; margin-bottom: 36px; }
     .newsletter__form { display: flex; justify-content: center; max-width: 440px; margin: 0 auto; }
     .newsletter__input { flex: 1; padding: 14px 18px; font-family: var(--font-body); font-size: 14px; border: 1px solid rgba(47,27,27,0.2); border-right: none; background: var(--cream); color: var(--cocoa); outline: none; }
@@ -590,19 +648,11 @@
     }
 
     @media (max-width: 640px) {
-      /* Nav — hamburger left, logo center, cart right */
-      .nav {
-        padding: 0 16px;
-        grid-template-columns: auto 1fr auto;
-      }
-      .nav__left { display: none; }
-      .nav__hamburger { display: flex; order: -1; }
-      .nav__logo { justify-self: center; }
-      .nav__logo-mark { height: 40px; }
-      .nav__logo-type { height: 37px; }
-      .nav__right { gap: 12px; }
-      .nav__icon-btn.search { display: flex; }
-      .nav__icon-btn.account { display: none; }
+      /* Nav — hamburger shows, desktop links hide */
+      .nav { padding: 8px 16px; }
+      .nav-desktop { display: none; }
+      .nav__hamburger { display: flex; }
+      .nav__logo img { width: 90px; }
 
       /* Hero */
       .hero { min-height: 100svh; }
@@ -653,9 +703,11 @@
       .footer__bottom { flex-direction: column; align-items: flex-start; }
     }
 
+    @media (min-width: 641px) {
+      .nav__hamburger { display: none; }
+    }
+
     @media (max-width: 480px) {
-      .nav__logo-mark { height: 34px; }
-      .nav__logo-type { height: 30px; }
       .hero__tagline { font-size: 18px; }
       .collection__grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .card__name { font-size: 13px; }
@@ -669,36 +721,52 @@
 
   <!-- ─── Mobile Drawer ──────────────────────────────────────── -->
   <div class="nav__drawer" id="navDrawer">
-    <a href="#collection" onclick="closeNav()">Shop</a>
-    <a href="#ritual" onclick="closeNav()">Our Story</a>
-    <a href="the-edit.html" onclick="closeNav()">The Edit</a>
-    <a href="#faq" onclick="closeNav()">FAQ</a>
+    <div class="nav__drawer-overlay" onclick="closeNav()"></div>
+    <div class="nav__drawer-panel">
+      <div class="nav__drawer-links">
+        <a href="#collection" onclick="closeNav()">Shop</a>
+        <a href="#ritual" onclick="closeNav()">About</a>
+        <a href="the-edit.html" onclick="closeNav()">The Edit</a>
+      </div>
+      <div class="nav__drawer-footer">
+        <a href="#">Account</a>
+      </div>
+    </div>
   </div>
 
   <!-- ─── Nav ───────────────────────────────────────────────── -->
-  <header class="nav">
-    <div class="nav__left">
-      <a href="#collection">Shop</a>
-      <a href="#ritual">About</a>
-      <a href="the-edit.html">The Edit</a>
-    </div>
-    <a href="index.html" class="nav__logo">
-      <img class="nav__logo-mark" src="assets/logos/HH_logo_H_cream.svg" alt="">
-      <img class="nav__logo-type" src="assets/logos/HH_logo_type_cream.svg" alt="Huntley House">
-    </a>
-    <div class="nav__right">
-      <button class="nav__icon-btn search" aria-label="Search">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+  <header class="nav" id="mainNav">
+    <nav class="nav__main">
+      <button class="nav__hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+        <svg stroke-width="1.2" width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor">
+          <path d="M1 5h20M1 11h20M1 17h20" stroke-linecap="round"/>
+        </svg>
       </button>
-      <button class="nav__icon-btn account" aria-label="Account">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <a href="#collection" class="nav-desktop">Shop</a>
+      <a href="#ritual" class="nav-desktop">About</a>
+      <a href="the-edit.html" class="nav-desktop">The Edit</a>
+    </nav>
+    <h1 class="nav__logo">
+      <a href="index.html">
+        <img src="assets/logos/HH_logo_type_cream.svg" alt="Huntley House">
+      </a>
+    </h1>
+    <div class="nav__right">
+      <button class="nav__icon-btn" aria-label="Search">
+        <svg stroke-width="1.2" width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor">
+          <circle cx="11" cy="10" r="7"/><path d="m16 15 3 3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="nav__icon-btn" aria-label="Account">
+        <svg stroke-width="1.2" width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor">
+          <circle cx="11" cy="7" r="4"/><path d="M3.5 19c1.421-2.974 4.247-5 7.5-5s6.079 2.026 7.5 5" stroke-linecap="round"/>
+        </svg>
       </button>
       <button class="nav__icon-btn" aria-label="Cart" onclick="openCart()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <svg stroke-width="1.2" width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor">
+          <path d="M11 7H3.577A2 2 0 0 0 1.64 9.497l2.051 8A2 2 0 0 0 5.63 19H16.37a2 2 0 0 0 1.937-1.503l2.052-8A2 2 0 0 0 18.422 7H11Zm0 0V1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
         <span class="cart-badge" id="cartBadge"></span>
-      </button>
-      <button class="nav__hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
-        <span></span><span></span><span></span>
       </button>
     </div>
   </header>
@@ -1057,14 +1125,21 @@
   </div>
 
   <script>
-    /* ─── Nav ───────────────────────────────────────────────── */
+    /* ─── Nav hide-on-scroll ────────────────────────────────── */
+    const nav = document.getElementById('mainNav');
+    let lastY = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      nav.classList.toggle('hidden', y > lastY && y > 100);
+      lastY = y;
+    }, { passive: true });
+
+    /* ─── Nav drawer ────────────────────────────────────────── */
     function toggleNav() {
       document.getElementById('navDrawer').classList.toggle('is-open');
-      document.getElementById('hamburger').classList.toggle('is-open');
     }
     function closeNav() {
       document.getElementById('navDrawer').classList.remove('is-open');
-      document.getElementById('hamburger').classList.remove('is-open');
     }
     function toggleFaq(btn) {
       const item = btn.closest('.faq__item');
