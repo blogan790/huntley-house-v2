@@ -287,6 +287,12 @@
       background: var(--cocoa);
       position: relative;
     }
+    .impact::after {
+      content: '';
+      display: block;
+      height: 56px;
+      background: linear-gradient(to bottom, var(--cocoa), var(--cream));
+    }
     .impact__track {
       display: flex;
       overflow-x: scroll;
@@ -516,7 +522,7 @@
 
     /* ─── FAQ ────────────────────────────────────────────────── */
     .faq {
-      background: linear-gradient(to bottom, var(--blue) 0%, var(--cream-warm) 100%);
+      background: linear-gradient(to bottom, var(--cream) 0%, var(--blue) 14%, var(--cream-warm) 100%);
       padding: 80px 48px 100px;
     }
     .faq__label { font-family: var(--font-body); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cocoa); opacity: 0.6; text-align: center; margin-bottom: 12px; }
@@ -770,6 +776,7 @@
       .impact-mobile { display: block; }
 
       /* Marquee */
+      .marquee-section { background: linear-gradient(to bottom, var(--cream-warm) 0px, var(--cream) 56px); }
       .marquee-header { padding: 48px 20px 24px; }
       .marquee__item { height: 300px; }
 

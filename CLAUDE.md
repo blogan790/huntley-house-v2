@@ -256,10 +256,10 @@ Reference: `docs/shopify-draft.md`
 | 5 | Ritual CTA | ✅ Done | olive bg/cream text |
 | 6 | Impact strip (value props) | ✅ Done | `impactGoTo()` + scroll listener syncing `.impact__dot.active` to `impactTrack` scroll position |
 | 7 | Collection cards | ✅ Done | Desktop gap→32px, max-width→1600px; mobile→64vw horizontal snap carousel with cocoa progress bar |
-| 8 | Section transitions | ⬜ Pending | Soften hard breaks between sections (`section-blends` style — background bleeds, no visible seams) |
+| 8 | Section transitions | ✅ Done | Gradient bridge impact→marquee (::after cocoa→cream); FAQ gradient starts from cream; mobile marquee-section fade from cream-warm |
 | 9 | Max-width | ✅ Done | `--container-max: 1720px` + `--gutter: 40px/20px` tokens; applied to collection grid, section-header, edit header/grid |
 | 10 | Scroll-triggered reveals | ✅ Done | IntersectionObserver; staggered `.card`, `.edit-card`, `.faq__item`; single reveals on section-header, ritual, brand-story, marquee-header, newsletter |
 
-**Next session: item 8 (section transitions / section-blends). All other Shopify merge items complete.**
+**Shopify merge complete. All 10 items done.**
 
 > Shopify developer draft notes: see `docs/shopify-draft.md`
