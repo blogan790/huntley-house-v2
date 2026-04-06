@@ -192,12 +192,12 @@ Proposals files: `C:\Users\Brett Logan\Downloads\Website Developers Proposals\`
 - [ ] Lifestyle photography (placeholder puzzle art in hero/ritual for now)
 
 ## Homepage Sections (in order)
-1. **Nav** — Deep Cocoa bg, H mark + "Huntley House" (Stylebender) horizontal logo, cream links left, search/cart/hamburger right. Mobile: hamburger left, logo center, cart right.
-2. **Hero** — Current: Rainy Ramen full-bleed, dark overlay, centered cream text. Copy: "Now Available / Less Scrolling. More Puzzling. / Brain cardio. No gym required." + "Shop the Collection" cocoa CTA. Lifestyle photo placeholder — replace when shoot assets arrive.
-3. **Value Props** — Orange strip, 3 columns: "Born in the City of Angels / The Softest Touch / Elevated Artwork"
+1. **Nav** — Deep Cocoa bg, wordmark-only logo (`HH_logo_type_cream.svg`, 145px), cream links desktop-left, icons right. Hides on scroll-down, reappears on scroll-up. Mobile drawer slides from left with large Stylebender links.
+2. **Hero** — Rainy Ramen full-bleed, gradient overlay (0.22→0.38→0.52), staggered fade-up entrance (14px travel, 1.2s cubic-bezier). Copy: "Now Available / Less Scrolling. More Puzzling. / Brain cardio. No gym required." + cream-warm CTA (font-weight 600). Lifestyle photo placeholder — swap when shoot lands.
+3. **Impact** — Deep Cocoa bg, horizontal snap-scroll, 3 items full-width. Stylebender title + NHaasGrotesk body + orange diamond decorator. Dot nav below. **⚠ JS for dot sync not yet added** — see `index.html` script block.
 4. **Marquee** — Auto-scrolling strip of all 8 puzzle artworks, fixed 480px height natural width. Header: "One piece, one pause, one 'aha' at a time."
 5. **Collection Grid** — 4-col (3 on tablet, 2 on mobile). Box top as primary, puzzle artwork reveals on hover. Aspect ratio 1534:1794 (matches exact box dimensions, no letterboxing).
-6. **The Puzzle Ritual** — Split: Fabled Forest image left, cream-warm panel right. "Think of it as brain cardio — no gym required."
+6. **The Puzzle Ritual** — Split: Vino Voyage image left, cream-warm panel right. CTA button: olive background (`#848247`), cream text.
 7. **Brand Story** — Centered italic paragraph
 8. **The Edit** — 3 blog cards linking to the-edit.html. "View All →" links to the-edit.html.
 9. **FAQ** — 4 questions, JS accordion, blue→cream gradient bg
@@ -205,18 +205,24 @@ Proposals files: `C:\Users\Brett Logan\Downloads\Website Developers Proposals\`
 11. **Footer** — Vintage Blue bg, 4-col links, contact info
 
 ## Design Decisions Made
+- Nav: wordmark-only (`HH_logo_type_cream.svg`), not H mark — matches Shopify draft
 - Nav background: Deep Cocoa (not Vintage Blue — too light for logo contrast)
-- Logo: H mark SVG + "Huntley House" text in Stylebender (not italic Kepler)
-- Box images: use as PRIMARY card image (all portrait 1534x1794); puzzle art reveals on hover. Solved the mixed portrait/landscape problem.
+- All display headings: `letter-spacing: -0.015em` (tight, matching Shopify draft)
+- Hero overlay: gradient not flat — `rgba(47,27,27,0.22→0.38→0.52)`, image should be readable not killed
+- Hero entrance: staggered fadeUp 14px (not 30px), 1.2s cubic-bezier(0.215,0.61,0.355,1), delays 0.2/0.4/0.6/0.8s
+- Hero CTA: cream-warm fill (#EFE6D8), cocoa text, font-weight 600 — ghost and orange both rejected
+- Impact strip: horizontal snap-scroll on deep cocoa replaces orange 3-col grid
+- Box images: use as PRIMARY card image (all portrait 1534x1794); puzzle art reveals on hover
 - Marquee: fixed height, natural width — editorial film strip, no cropping
-- Hero: full-bleed image with overlay. Placeholder is Rainy Ramen. Will swap for lifestyle photo from shoot.
-- Ritual section image: Fabled Forest (Rainy Ramen moved to hero)
+- Ritual section: cream-warm panel (olive panel rejected); CTA is olive fill/cream text
+- Hero image: placeholder is Rainy Ramen. Will swap for lifestyle photo from shoot.
 - The Edit: lives at the-edit.html, homepage shows 3 featured articles with link
 
 ## Logo Files in Project
 | File | Use |
 |------|-----|
-| `assets/logos/HH_logo_H_cream.svg` | Nav (on cocoa bg) |
+| `assets/logos/HH_logo_type_cream.svg` | Nav (wordmark, on cocoa bg) — current |
+| `assets/logos/HH_logo_H_cream.svg` | Pre-today nav logo (H mark only) |
 | `assets/logos/HH_logo_H_cocoa.svg` | Newsletter mark (on cream-warm bg) |
 | All other SVGs | Available but not currently used in main pages |
 
@@ -228,8 +234,32 @@ Proposals files: `C:\Users\Brett Logan\Downloads\Website Developers Proposals\`
 | Rainy Ramen hero (current) | https://fastidious-dango-897244.netlify.app |
 | All deploys | https://app.netlify.com/projects/fastidious-dango-897244/deploys |
 
-## Next Session Priorities
-1. Hero image decision — keep Rainy Ramen or try Fabled Forest? Or hold for lifestyle photos?
-2. Build product detail page (product.html)
-3. Mobile polish pass — test on real device
-4. Review and refine copy throughout
+## Branches
+| Branch | Description | URL |
+|--------|-------------|-----|
+| `master` | v1 prototype (warm, cream-first, frozen) | https://blogan790.github.io/huntley-house/ |
+| `v2-luxury` | Active iteration — Shopify draft merge in progress | https://blogan790.github.io/huntley-house-v2/ |
+
+---
+
+## Shopify Draft Merge — Status
+
+Working file: `index.html` (master branch, pushed to huntley-house-v2 remote).
+Reference: `docs/shopify-draft.md`
+
+| # | Item | Status | Notes |
+|---|------|--------|-------|
+| 1 | Hero overlay (gradient) | ✅ Done | 0.22→0.38→0.52 |
+| 2 | Hero entrance animation | ✅ Done | fadeUp 14px, staggered delays |
+| 3 | Nav / logo (wordmark, tight tracking) | ✅ Done | wordmark SVG, -0.015em on all headings |
+| 4 | Hero CTA | ✅ Done | cream-warm fill, font-weight 600 |
+| 5 | Ritual CTA | ✅ Done | olive bg/cream text |
+| 6 | Impact strip (value props) | ✅ Done | `impactGoTo()` + scroll listener syncing `.impact__dot.active` to `impactTrack` scroll position |
+| 7 | Collection cards | ✅ Done | Desktop gap→32px, max-width→1600px; mobile→64vw horizontal snap carousel with cocoa progress bar |
+| 8 | Section transitions | ⬜ Pending | Soften hard breaks between sections (`section-blends` style — background bleeds, no visible seams) |
+| 9 | Max-width | ⬜ Pending | Push container toward 1600–1720px (Shopify uses 1720px max) |
+| 10 | Scroll-triggered reveals | ⬜ Pending | IntersectionObserver on product grid + sections, staggered fade-in on scroll |
+
+**Next session: item 8 (section transitions / section-blends).**
+
+> Shopify developer draft notes: see `docs/shopify-draft.md`

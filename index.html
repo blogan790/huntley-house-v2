@@ -280,46 +280,69 @@
     .hero__cta:hover { background: #e5dace; }
 
     /* ─── Value Props ────────────────────────────────────────── */
-    .value-props {
-      background: var(--orange);
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-    .value-prop {
-      padding: 40px 48px;
-      text-align: center;
+    /* ─── Impact scroll ─── */
+    .impact {
+      background: var(--cocoa);
       position: relative;
     }
-    .value-prop + .value-prop::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 25%; bottom: 25%;
-      width: 1px;
-      background: rgba(255,252,248,0.3);
+    .impact__track {
+      display: flex;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
     }
-    .value-prop__title {
-      font-family: var(--font-italic);
-      font-style: italic;
-      font-size: 18px;
-      color: var(--cream);
-      margin-bottom: 8px;
+    .impact__track::-webkit-scrollbar { display: none; }
+    .impact__item {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 72px 60px;
+      min-height: 300px;
     }
-    .value-prop__body {
-      font-family: var(--font-body);
-      font-size: 13px;
-      color: var(--cream);
-      opacity: 0.85;
-      line-height: 1.6;
-    }
-    .value-prop__dot {
+    .impact__diamond {
       display: block;
+      width: 6px;
+      height: 6px;
+      background: var(--orange);
+      transform: rotate(45deg);
+      margin: 0 auto 28px;
+    }
+    .impact__title {
+      font-family: var(--font-title);
+      font-size: clamp(32px, 4vw, 52px);
+      letter-spacing: -0.015em;
+      text-transform: uppercase;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .impact__body {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--cream);
+      opacity: 0.6;
+      line-height: 1.65;
+      max-width: 340px;
+    }
+    .impact__dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      padding-bottom: 28px;
+    }
+    .impact__dot {
       width: 4px;
       height: 4px;
-      background: var(--cream);
       border-radius: 50%;
-      margin: 0 auto 12px;
-      opacity: 0.6;
+      background: rgba(239,230,216,0.2);
+      transition: background 0.3s;
+      cursor: pointer;
     }
+    .impact__dot.active { background: var(--cream-warm); }
 
     /* ─── Marquee ────────────────────────────────────────────── */
     .marquee-section { background: var(--cream); }
@@ -358,6 +381,7 @@
       backface-visibility: hidden;
     }
     .marquee__item { flex-shrink: 0; height: 480px; width: auto; }
+    .marquee__item a { display: block; height: 100%; }
     .marquee__item img { height: 100%; width: auto; display: block; transition: transform 0.6s ease; }
     .marquee__item:hover img { transform: scale(1.03); }
 
@@ -366,7 +390,10 @@
     .section-header { text-align: center; padding: 72px 48px 48px; }
     .section-header__label { font-family: var(--font-body); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); margin-bottom: 12px; }
     .section-header__title { font-family: var(--font-title); font-size: clamp(36px, 4.5vw, 64px); line-height: 0.95; letter-spacing: -0.015em; text-transform: uppercase; color: var(--cocoa); }
-    .collection__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1400px; margin: 0 auto; }
+    .collection__scroll-wrap { position: relative; }
+    .collection__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; max-width: 1600px; margin: 0 auto; }
+    .collection__progress { height: 2px; background: rgba(47,27,27,0.12); max-width: 1600px; margin: 32px auto 0; display: none; }
+    .collection__progress-bar { height: 100%; background: var(--cocoa); width: 25%; transition: width 0.1s linear; }
     .card { display: flex; flex-direction: column; cursor: pointer; text-decoration: none; color: inherit; }
     .card__image-wrap { position: relative; overflow: hidden; background: var(--cream-warm); margin-bottom: 14px; aspect-ratio: 1534 / 1794; }
     .card__image-wrap img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.6s ease, opacity 0.4s ease; }
@@ -406,8 +433,8 @@
     .ritual__divider { margin-bottom: 24px; }
     .ritual__divider img { height: 14px; width: auto; opacity: 0.4; }
     .ritual__body { font-family: var(--font-body); font-size: 15px; color: var(--cocoa); opacity: 0.75; line-height: 1.75; max-width: 420px; margin-bottom: 36px; }
-    .ritual__cta { display: inline-block; font-family: var(--font-body); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream); background: var(--cocoa); padding: 14px 32px; width: fit-content; transition: background 0.2s; }
-    .ritual__cta:hover { background: var(--choc); }
+    .ritual__cta { display: inline-block; font-family: var(--font-body); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream); background: var(--olive); padding: 14px 32px; width: fit-content; transition: background 0.2s; }
+    .ritual__cta:hover { background: #6e6c3a; }
 
     /* ─── Brand story ────────────────────────────────────────── */
     .brand-story {
@@ -685,20 +712,23 @@
       .hero__content { padding: 0 24px; }
       .hero__headline { font-size: clamp(40px, 11vw, 64px); }
 
-      /* Value props */
-      .value-props { grid-template-columns: 1fr; }
-      .value-prop + .value-prop::before { left: 15%; right: 15%; top: 0; bottom: auto; width: auto; height: 1px; }
+      /* Impact scroll */
+      .impact__item { padding: 60px 36px; min-height: 280px; }
 
       /* Marquee */
       .marquee-header { padding: 48px 20px 24px; }
       .marquee__item { height: 300px; }
 
-      /* Collection */
+      /* Collection — horizontal carousel on mobile */
       .section-header { padding: 56px 20px 32px; }
-      .collection { padding: 0 16px 72px; }
-      .collection__grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .collection { padding: 0 0 72px; }
+      .collection__scroll-wrap { padding: 0 20px; }
+      .collection__grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
+      .collection__grid::-webkit-scrollbar { display: none; }
+      .card { flex-shrink: 0; width: 64vw; scroll-snap-align: start; }
       .card__btn { display: none; }
       .card__quick-add { opacity: 1; transform: none; }
+      .collection__progress { display: block; }
 
       /* Ritual */
       .ritual { grid-template-columns: 1fr; }
@@ -735,7 +765,7 @@
 
     @media (max-width: 480px) {
       .hero__tagline { font-size: 18px; }
-      .collection__grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .card { width: 70vw; }
       .card__name { font-size: 13px; }
       .footer__top { grid-template-columns: 1fr; }
       .edit__grid { gap: 32px; }
@@ -819,25 +849,6 @@
     </div>
   </section>
 
-  <!-- ─── Value Props ───────────────────────────────────────── -->
-  <div class="value-props">
-    <div class="value-prop">
-      <span class="value-prop__dot"></span>
-      <p class="value-prop__title">Born in the City of Angels</p>
-      <p class="value-prop__body">West Hollywood roots with manufacturing and craftsmanship at our core.</p>
-    </div>
-    <div class="value-prop">
-      <span class="value-prop__dot"></span>
-      <p class="value-prop__title">The Softest Touch</p>
-      <p class="value-prop__body">Our pieces are crafted to feel as good in your hands as they look on the table.</p>
-    </div>
-    <div class="value-prop">
-      <span class="value-prop__dot"></span>
-      <p class="value-prop__title">Elevated Artwork</p>
-      <p class="value-prop__body">We'll help you find the right puzzle for your skill level — and every windowsill.</p>
-    </div>
-  </div>
-
   <!-- ─── Marquee ───────────────────────────────────────────── -->
   <div class="marquee-section">
     <div class="marquee-header">
@@ -846,22 +857,22 @@
     </div>
     <div class="marquee">
       <div class="marquee__track">
-        <div class="marquee__item"><img src="assets/images/puzzles/Cat Christmas(500)_1.jpg" alt="Cat Christmas"></div>
-        <div class="marquee__item"><img src="assets/images/puzzles/fabled forest (rework_brightened).jpg" alt="Fabled Forest"></div>
-        <div class="marquee__item"><img src="assets/images/puzzles/frosted_feelings(final).jpg" alt="Frosted Feelings"></div>
-        <div class="marquee__item"><img src="assets/images/puzzles/petal pages_1.jpg" alt="Pastel Petals"></div>
-        <div class="marquee__item"><img src="assets/images/puzzles/Purrfect Pages(new_edit).jpg" alt="Purrfect Pages"></div>
-        <div class="marquee__item"><img src="assets/images/puzzles/rainy ramen_2.jpg" alt="Rainy Ramen"></div>
-        <div class="marquee__item"><img src="assets/images/puzzles/route retro.jpg" alt="Route Retro"></div>
-        <div class="marquee__item"><img src="assets/images/puzzles/vino voyage (final).jpg" alt="Vino Voyage"></div>
-        <div class="marquee__item"><img src="assets/images/puzzles/Cat Christmas(500)_1.jpg" alt=""></div>
-        <div class="marquee__item"><img src="assets/images/puzzles/fabled forest (rework_brightened).jpg" alt=""></div>
-        <div class="marquee__item"><img src="assets/images/puzzles/frosted_feelings(final).jpg" alt=""></div>
-        <div class="marquee__item"><img src="assets/images/puzzles/petal pages_1.jpg" alt=""></div>
-        <div class="marquee__item"><img src="assets/images/puzzles/Purrfect Pages(new_edit).jpg" alt=""></div>
-        <div class="marquee__item"><img src="assets/images/puzzles/rainy ramen_2.jpg" alt=""></div>
-        <div class="marquee__item"><img src="assets/images/puzzles/route retro.jpg" alt=""></div>
-        <div class="marquee__item"><img src="assets/images/puzzles/vino voyage (final).jpg" alt=""></div>
+        <div class="marquee__item"><a href="product.html?puzzle=cat-christmas"><img src="assets/images/puzzles/Cat Christmas(500)_1.jpg" alt="Cat Christmas"></a></div>
+        <div class="marquee__item"><a href="product.html?puzzle=fabled-forest"><img src="assets/images/puzzles/fabled forest (rework_brightened).jpg" alt="Fabled Forest"></a></div>
+        <div class="marquee__item"><a href="product.html?puzzle=frosted-feelings"><img src="assets/images/puzzles/frosted_feelings(final).jpg" alt="Frosted Feelings"></a></div>
+        <div class="marquee__item"><a href="product.html?puzzle=pastel-petals"><img src="assets/images/puzzles/petal pages_1.jpg" alt="Pastel Petals"></a></div>
+        <div class="marquee__item"><a href="product.html?puzzle=purrfect-pages"><img src="assets/images/puzzles/Purrfect Pages(new_edit).jpg" alt="Purrfect Pages"></a></div>
+        <div class="marquee__item"><a href="product.html?puzzle=rainy-ramen"><img src="assets/images/puzzles/rainy ramen_2.jpg" alt="Rainy Ramen"></a></div>
+        <div class="marquee__item"><a href="product.html?puzzle=route-retro"><img src="assets/images/puzzles/route retro.jpg" alt="Route Retro"></a></div>
+        <div class="marquee__item"><a href="product.html?puzzle=vino-voyage"><img src="assets/images/puzzles/vino voyage (final).jpg" alt="Vino Voyage"></a></div>
+        <div class="marquee__item"><a href="product.html?puzzle=cat-christmas" tabindex="-1" aria-hidden="true"><img src="assets/images/puzzles/Cat Christmas(500)_1.jpg" alt=""></a></div>
+        <div class="marquee__item"><a href="product.html?puzzle=fabled-forest" tabindex="-1" aria-hidden="true"><img src="assets/images/puzzles/fabled forest (rework_brightened).jpg" alt=""></a></div>
+        <div class="marquee__item"><a href="product.html?puzzle=frosted-feelings" tabindex="-1" aria-hidden="true"><img src="assets/images/puzzles/frosted_feelings(final).jpg" alt=""></a></div>
+        <div class="marquee__item"><a href="product.html?puzzle=pastel-petals" tabindex="-1" aria-hidden="true"><img src="assets/images/puzzles/petal pages_1.jpg" alt=""></a></div>
+        <div class="marquee__item"><a href="product.html?puzzle=purrfect-pages" tabindex="-1" aria-hidden="true"><img src="assets/images/puzzles/Purrfect Pages(new_edit).jpg" alt=""></a></div>
+        <div class="marquee__item"><a href="product.html?puzzle=rainy-ramen" tabindex="-1" aria-hidden="true"><img src="assets/images/puzzles/rainy ramen_2.jpg" alt=""></a></div>
+        <div class="marquee__item"><a href="product.html?puzzle=route-retro" tabindex="-1" aria-hidden="true"><img src="assets/images/puzzles/route retro.jpg" alt=""></a></div>
+        <div class="marquee__item"><a href="product.html?puzzle=vino-voyage" tabindex="-1" aria-hidden="true"><img src="assets/images/puzzles/vino voyage (final).jpg" alt=""></a></div>
       </div>
     </div>
   </div>
@@ -872,7 +883,8 @@
       <p class="section-header__label">The Collection</p>
       <h2 class="section-header__title">The Puzzles</h2>
     </div>
-    <div class="collection__grid">
+    <div class="collection__scroll-wrap">
+    <div class="collection__grid" id="collectionGrid">
       <a class="card" href="product.html?puzzle=route-retro">
         <div class="card__image-wrap">
           <img class="card__puzzle-img" src="assets/images/boxes-cropped/box top_route retro (lighter).jpg" alt="Route Retro">
@@ -970,6 +982,8 @@
         </div>
       </a>
     </div>
+    <div class="collection__progress"><div class="collection__progress-bar" id="collectionProgressBar"></div></div>
+    </div><!-- /.collection__scroll-wrap -->
   </section>
 
   <!-- ─── The Puzzle Ritual ─────────────────────────────────── -->
@@ -1029,6 +1043,32 @@
       </article>
     </div>
   </section>
+
+  <!-- ─── Impact ────────────────────────────────────────────── -->
+  <div class="impact" id="impact">
+    <div class="impact__track" id="impactTrack">
+      <div class="impact__item">
+        <span class="impact__diamond"></span>
+        <p class="impact__title">Born in the City of Angels</p>
+        <p class="impact__body">West Hollywood roots with manufacturing and craftsmanship at our core.</p>
+      </div>
+      <div class="impact__item">
+        <span class="impact__diamond"></span>
+        <p class="impact__title">The Softest Touch</p>
+        <p class="impact__body">Our pieces are crafted to feel as good in your hands as they look on the table.</p>
+      </div>
+      <div class="impact__item">
+        <span class="impact__diamond"></span>
+        <p class="impact__title">Elevated Artwork</p>
+        <p class="impact__body">We'll help you find the right puzzle for your skill level — and every windowsill.</p>
+      </div>
+    </div>
+    <div class="impact__dots" id="impactDots">
+      <span class="impact__dot active" onclick="impactGoTo(0)"></span>
+      <span class="impact__dot" onclick="impactGoTo(1)"></span>
+      <span class="impact__dot" onclick="impactGoTo(2)"></span>
+    </div>
+  </div>
 
   <!-- ─── FAQ ───────────────────────────────────────────────── -->
   <section class="faq" id="faq">
@@ -1236,6 +1276,46 @@
         </div>
       `).join('');
     }
+
+    /* ─── Impact strip — dot sync ──────────────────────────── */
+    (function () {
+      const track = document.getElementById('impactTrack');
+      const dots = document.querySelectorAll('.impact__dot');
+      if (!track || !dots.length) return;
+
+      function syncDots() {
+        const itemW = track.scrollWidth / dots.length;
+        const idx = Math.min(Math.round(track.scrollLeft / itemW), dots.length - 1);
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      }
+
+      track.addEventListener('scroll', syncDots, { passive: true });
+
+      window.impactGoTo = function (idx) {
+        const itemW = track.scrollWidth / dots.length;
+        track.scrollTo({ left: idx * itemW, behavior: 'smooth' });
+      };
+    })();
+
+    /* ─── Collection carousel — progress bar ───────────────── */
+    (function () {
+      const grid = document.getElementById('collectionGrid');
+      const bar = document.getElementById('collectionProgressBar');
+      if (!grid || !bar) return;
+
+      function syncProgress() {
+        const max = grid.scrollWidth - grid.clientWidth;
+        if (max <= 0) { bar.style.width = '100%'; return; }
+        const pct = (grid.scrollLeft / max) * 100;
+        // bar represents position of the viewport within the full scroll range
+        const viewPct = (grid.clientWidth / grid.scrollWidth) * 100;
+        bar.style.width = Math.min(viewPct + pct * (1 - viewPct / 100), 100) + '%';
+      }
+
+      grid.addEventListener('scroll', syncProgress, { passive: true });
+      // init on load
+      syncProgress();
+    })();
 
     /* ─── Marquee (JS RAF — iOS safe) ──────────────────────── */
     (function () {
