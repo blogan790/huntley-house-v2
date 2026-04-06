@@ -258,8 +258,8 @@ Reference: `docs/shopify-draft.md`
 | 7 | Collection cards | ✅ Done | Desktop gap→32px, max-width→1600px; mobile→64vw horizontal snap carousel with cocoa progress bar |
 | 8 | Section transitions | ⬜ Pending | Soften hard breaks between sections (`section-blends` style — background bleeds, no visible seams) |
 | 9 | Max-width | ✅ Done | `--container-max: 1720px` + `--gutter: 40px/20px` tokens; applied to collection grid, section-header, edit header/grid |
-| 10 | Scroll-triggered reveals | ⬜ Pending | IntersectionObserver on product grid + sections, staggered fade-in on scroll |
+| 10 | Scroll-triggered reveals | ✅ Done | IntersectionObserver; staggered `.card`, `.edit-card`, `.faq__item`; single reveals on section-header, ritual, brand-story, marquee-header, newsletter |
 
-**Next session: item 10 (scroll-triggered reveals) then item 8 (section transitions / section-blends).**
+**Next session: item 8 (section transitions / section-blends). All other Shopify merge items complete.**
 
 > Shopify developer draft notes: see `docs/shopify-draft.md`
