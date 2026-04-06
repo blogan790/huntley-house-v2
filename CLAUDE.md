@@ -257,9 +257,9 @@ Reference: `docs/shopify-draft.md`
 | 6 | Impact strip (value props) | ✅ Done | `impactGoTo()` + scroll listener syncing `.impact__dot.active` to `impactTrack` scroll position |
 | 7 | Collection cards | ✅ Done | Desktop gap→32px, max-width→1600px; mobile→64vw horizontal snap carousel with cocoa progress bar |
 | 8 | Section transitions | ⬜ Pending | Soften hard breaks between sections (`section-blends` style — background bleeds, no visible seams) |
-| 9 | Max-width | ⬜ Pending | Push container toward 1600–1720px (Shopify uses 1720px max) |
+| 9 | Max-width | ✅ Done | `--container-max: 1720px` + `--gutter: 40px/20px` tokens; applied to collection grid, section-header, edit header/grid |
 | 10 | Scroll-triggered reveals | ⬜ Pending | IntersectionObserver on product grid + sections, staggered fade-in on scroll |
 
-**Next session: item 8 (section transitions / section-blends).**
+**Next session: item 10 (scroll-triggered reveals) then item 8 (section transitions / section-blends).**
 
 > Shopify developer draft notes: see `docs/shopify-draft.md`
