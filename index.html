@@ -336,6 +336,56 @@
       gap: 6px;
       padding-bottom: 28px;
     }
+    /* ─── Mobile impact (single panel + creds) ──────────────── */
+    .impact-mobile { display: none; }
+    .impact-mobile__panel {
+      background: var(--cocoa);
+      text-align: center;
+      padding: 52px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .impact-mobile__title {
+      font-family: var(--font-title);
+      font-size: 28px;
+      letter-spacing: -0.015em;
+      text-transform: uppercase;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .impact-mobile__body {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--cream);
+      opacity: 0.6;
+      line-height: 1.65;
+      max-width: 280px;
+    }
+    .impact-mobile__creds {
+      background: var(--cream-warm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 14px 20px;
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .impact-mobile__bull {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      background: var(--orange);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
     .impact__dot {
       width: 4px;
       height: 4px;
@@ -715,8 +765,9 @@
       .hero__content { padding: 0 24px; }
       .hero__headline { font-size: clamp(40px, 11vw, 64px); }
 
-      /* Impact — hidden on mobile */
+      /* Impact — full strip hidden on mobile, compact version shown */
       .impact { display: none; }
+      .impact-mobile { display: block; }
 
       /* Marquee */
       .marquee-header { padding: 48px 20px 24px; }
@@ -883,6 +934,22 @@
       <span class="impact__dot active" onclick="impactGoTo(0)"></span>
       <span class="impact__dot" onclick="impactGoTo(1)"></span>
       <span class="impact__dot" onclick="impactGoTo(2)"></span>
+    </div>
+  </div>
+
+  <!-- ─── Impact mobile (single panel + credentials) ─────────── -->
+  <div class="impact-mobile">
+    <div class="impact-mobile__panel">
+      <span class="impact__diamond"></span>
+      <p class="impact-mobile__title">The Softest Touch</p>
+      <p class="impact-mobile__body">Our pieces are crafted to feel as good in your hands as they look on the table.</p>
+    </div>
+    <div class="impact-mobile__creds">
+      <span>Made in USA</span>
+      <span class="impact-mobile__bull"></span>
+      <span>500 &amp; 1000 Pieces</span>
+      <span class="impact-mobile__bull"></span>
+      <span>$39.95</span>
     </div>
   </div>
 
