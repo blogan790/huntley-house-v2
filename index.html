@@ -722,16 +722,12 @@
       .marquee-header { padding: 48px 20px 24px; }
       .marquee__item { height: 300px; }
 
-      /* Collection — horizontal carousel on mobile */
+      /* Collection */
       .section-header { padding: 56px var(--gutter) 32px; }
-      .collection { padding: 0 0 72px; }
-      .collection__scroll-wrap { padding: 0 20px; }
-      .collection__grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
-      .collection__grid::-webkit-scrollbar { display: none; }
-      .card { flex-shrink: 0; width: 64vw; scroll-snap-align: start; }
+      .collection { padding: 0 var(--gutter) 72px; }
+      .collection__grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
       .card__btn { display: none; }
       .card__quick-add { opacity: 1; transform: none; }
-      .collection__progress { display: block; }
 
       /* Ritual */
       .ritual { grid-template-columns: 1fr; }
@@ -768,7 +764,7 @@
 
     @media (max-width: 480px) {
       .hero__tagline { font-size: 18px; }
-      .card { width: 70vw; }
+      .collection__grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .card__name { font-size: 13px; }
       .footer__top { grid-template-columns: 1fr; }
       .edit__grid { gap: 32px; }
